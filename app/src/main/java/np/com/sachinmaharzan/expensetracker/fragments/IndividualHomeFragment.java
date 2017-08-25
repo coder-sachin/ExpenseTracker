@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import np.com.sachinmaharzan.expensetracker.ExpenseActivity;
+import np.com.sachinmaharzan.expensetracker.IncomeActivity;
 import np.com.sachinmaharzan.expensetracker.R;
 
 /**
@@ -99,7 +100,7 @@ public class IndividualHomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        /*
+
         income.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +113,7 @@ public class IndividualHomeFragment extends Fragment {
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(),BalanceActivity.class));
             }
-        });
+        });/*
         creditamt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

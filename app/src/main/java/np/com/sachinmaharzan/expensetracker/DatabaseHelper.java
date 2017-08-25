@@ -217,21 +217,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public ArrayList<Income> getIncomeList(){
-        ArrayList<Income>list= new ArrayList<Income>();
-        String getIncomeListSql="SELECT * FROM `income` ORDER BY income_id DESC";
-        Cursor c=getReadableDatabase().rawQuery(getIncomeListSql,null);
-        while(c.moveToNext()){
 
-            Income i=new Income();
-            i.income_id=Integer.parseInt(c.getString(c.getColumnIndex("income_id")));
-            i.income_desc=c.getString(c.getColumnIndex("income_desc"));
-            i.income_amt=Integer.parseInt(c.getString(c.getColumnIndex("income_amt")));
-            list.add(i);
-        }
-        c.close();
-        return list;
-    }
 
     public ArrayList<Credit> getCreditList(){
         ArrayList<Credit>list= new ArrayList<Credit>();
@@ -320,19 +306,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public Income getIncomeInfo(int id){
-        Income e = new Income();
-        String sql="SELECT * FROM `income` WHERE income_id="+id;
-        Cursor c=getReadableDatabase().rawQuery(sql,null);
-        while(c.moveToNext()) {
-            e.income_id=Integer.parseInt(c.getString(c.getColumnIndex("income_id")));
-            e.income_amt=Integer.parseInt(c.getString(c.getColumnIndex("income_amt")));
-            e.income_desc=c.getString(c.getColumnIndex("income_desc"));
-        }
-        c.close();
-        return e;
 
-    }
 
     public Credit getCreditInfo(int id){
         Credit cr = new Credit();
@@ -391,6 +365,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return m.m_id;
     }*/
 
+    public ArrayList<Income> getIncomeList(){
+        ArrayList<Income>list= new ArrayList<Income>();
+        String getIncomeListSql="SELECT * FROM `income` ORDER BY income_id DESC";
+        Cursor c=getReadableDatabase().rawQuery(getIncomeListSql,null);
+        while(c.moveToNext()){
+
+            Income i=new Income();
+            i.income_id=Integer.parseInt(c.getString(c.getColumnIndex("income_id")));
+            i.income_desc=c.getString(c.getColumnIndex("income_desc"));
+            i.income_amt=Integer.parseInt(c.getString(c.getColumnIndex("income_amt")));
+            list.add(i);
+        }
+        c.close();
+        return list;
+    }
+
     public Expense getExpenseInfo(int id){
         Expense e = new Expense();
         String sql="SELECT * FROM `expense` WHERE expense_id="+id;
@@ -404,7 +394,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  e;
 
     }
+    public Income getIncomeInfo(int id){
+        Income e = new Income();
+        String sql="SELECT * FROM `income` WHERE income_id="+id;
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+        while(c.moveToNext()) {
+            e.income_id=Integer.parseInt(c.getString(c.getColumnIndex("income_id")));
+            e.income_amt=Integer.parseInt(c.getString(c.getColumnIndex("income_amt")));
+            e.income_desc=c.getString(c.getColumnIndex("income_desc"));
+        }
+        c.close();
+        return e;
 
+    }
 
 
 

@@ -27,7 +27,7 @@ public class IndividualHomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-/*
+
         income.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +42,7 @@ public class IndividualHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(IndividualHomeActivity.this,BalanceActivity.class));
             }
         });
-
+/*
         creditamt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
