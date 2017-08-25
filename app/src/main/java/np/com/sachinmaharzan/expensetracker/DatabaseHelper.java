@@ -141,125 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    /*
 
-
-
-
-
-
-
-
-    public int getGexpenseSum(int id){
-        String gexpenseTotalSql="SELECT * FROM `gexpense` WHERE `g_id`="+id;
-        Log.i("getexpsum", "first line and gid is: "+id+"  "+gexpenseTotalSql);
-
-        Cursor d=getReadableDatabase().rawQuery(gexpenseTotalSql,null);
-        int total=0;
-        Log.i("before while", "afer total: ");
-        while(d.moveToNext()){
-            Log.i("whielloop", "firstline: ");
-            Gexpense e=new Gexpense();
-            e.gexpense_amt=Integer.parseInt(d.getString(d.getColumnIndex("gexpense_amt")));
-            Log.i("looop", "expenseamt: "+e.gexpense_amt);
-            total=total+e.gexpense_amt;
-        }
-        d.close();
-        Log.i("endfunc", "totalis : "+total);
-        return total;
-
-
-    }
-
-
-
-
-
-
-
-
-    public ArrayList<Group> getGroupList(){
-        ArrayList<Group>list= new ArrayList<Group>();
-        String getGrouplistsql="SELECT * FROM `grup` ORDER BY g_id DESC";
-        Cursor c=getReadableDatabase().rawQuery(getGrouplistsql,null);
-        while(c.moveToNext()){
-            Group m=new Group();
-
-            m.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
-            m.g_name=c.getString(c.getColumnIndex("g_name"));
-            list.add(m);
-        }
-        c.close();
-        return list;
-    }
-
-    public ArrayList<Member> getMemberList(int id){
-        ArrayList<Member>list= new ArrayList<Member>();
-        String getMemberlistSql="SELECT * FROM `member` where `g_id`="+id;
-        Cursor c=getReadableDatabase().rawQuery(getMemberlistSql,null);
-        while(c.moveToNext()){
-            Member m=new Member();
-            m.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
-
-            m.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
-            m.m_name=c.getString(c.getColumnIndex("m_name"));
-            list.add(m);
-        }
-        c.close();
-        return list;
-    }
-
-    public ArrayList<Gexpense> getGexpenseList(int id){
-        ArrayList<Gexpense>list= new ArrayList<Gexpense>();
-        String getGexpenselistSql="SELECT * FROM `gexpense` WHERE `g_id`="+id;
-        Cursor c=getReadableDatabase().rawQuery(getGexpenselistSql,null);
-        while(c.moveToNext()){
-            Gexpense ge=new Gexpense();
-            ge.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
-            ge.gexpense_amt=Integer.parseInt(c.getString(c.getColumnIndex("gexpense_amt")));
-            ge.gexpense_desc=c.getString(c.getColumnIndex("gexpense_desc"));
-            list.add(ge);
-        }
-        c.close();
-        return list;
-    }
-
-
-
-
-
-
-
-
-
-
-    public Member getMemberInfo(int id){
-        Member m = new Member();
-        String sql="SELECT * FROM `member` WHERE m_id="+id;
-        Cursor c=getReadableDatabase().rawQuery(sql,null);
-        while(c.moveToNext()) {
-
-            m.m_name=c.getString(c.getColumnIndex("m_name"));
-
-        }
-        c.close();
-        return m;
-    }
-
-    public int getMemberId(String name){
-        Log.i("name", "is: "+name);
-        Member m = new Member();
-        String sql="SELECT * FROM `member` WHERE m_name='"+name+"'";
-        Log.i("Sql", "is: "+sql);
-        Cursor c=getReadableDatabase().rawQuery(sql,null);
-        while(c.moveToNext()) {
-
-            m.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
-
-        }
-        c.close();
-        return m.m_id;
-    }*/
     public Debit getDebitInfo(int id){
         Debit db = new Debit();
         String sql="SELECT * FROM `debit` WHERE db_id="+id;
@@ -316,6 +198,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return total;
 
     }
+    public int getGexpenseSum(int id){
+        String gexpenseTotalSql="SELECT * FROM `gexpense` WHERE `g_id`="+id;
+        Log.i("getexpsum", "first line and gid is: "+id+"  "+gexpenseTotalSql);
+
+        Cursor d=getReadableDatabase().rawQuery(gexpenseTotalSql,null);
+        int total=0;
+        Log.i("before while", "afer total: ");
+        while(d.moveToNext()){
+            Log.i("whielloop", "firstline: ");
+            Gexpense e=new Gexpense();
+            e.gexpense_amt=Integer.parseInt(d.getString(d.getColumnIndex("gexpense_amt")));
+            Log.i("looop", "expenseamt: "+e.gexpense_amt);
+            total=total+e.gexpense_amt;
+        }
+        d.close();
+        Log.i("endfunc", "totalis : "+total);
+        return total;
+
+
+    }
 
     public ArrayList<Income> getIncomeList(){
         ArrayList<Income>list= new ArrayList<Income>();
@@ -345,6 +247,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.i("value", "getDebitList: "+i.db_desc);
             i.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
             list.add(i);
+        }
+        c.close();
+        return list;
+    }
+    public ArrayList<Group> getGroupList(){
+        ArrayList<Group>list= new ArrayList<Group>();
+        String getGrouplistsql="SELECT * FROM `grup` ORDER BY g_id DESC";
+        Cursor c=getReadableDatabase().rawQuery(getGrouplistsql,null);
+        while(c.moveToNext()){
+            Group m=new Group();
+
+            m.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
+            m.g_name=c.getString(c.getColumnIndex("g_name"));
+            list.add(m);
+        }
+        c.close();
+        return list;
+    }
+    public ArrayList<Member> getMemberList(int id){
+        ArrayList<Member>list= new ArrayList<Member>();
+        String getMemberlistSql="SELECT * FROM `member` where `g_id`="+id;
+        Cursor c=getReadableDatabase().rawQuery(getMemberlistSql,null);
+        while(c.moveToNext()){
+            Member m=new Member();
+            m.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
+
+            m.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
+            m.m_name=c.getString(c.getColumnIndex("m_name"));
+            list.add(m);
+        }
+        c.close();
+        return list;
+    }
+    public ArrayList<Gexpense> getGexpenseList(int id){
+        ArrayList<Gexpense>list= new ArrayList<Gexpense>();
+        String getGexpenselistSql="SELECT * FROM `gexpense` WHERE `g_id`="+id;
+        Cursor c=getReadableDatabase().rawQuery(getGexpenselistSql,null);
+        while(c.moveToNext()){
+            Gexpense ge=new Gexpense();
+            ge.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
+            ge.gexpense_amt=Integer.parseInt(c.getString(c.getColumnIndex("gexpense_amt")));
+            ge.gexpense_desc=c.getString(c.getColumnIndex("gexpense_desc"));
+            list.add(ge);
         }
         c.close();
         return list;
@@ -390,6 +335,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cr;
 
     }
+    public Member getMemberInfo(int id){
+        Member m = new Member();
+        String sql="SELECT * FROM `member` WHERE m_id="+id;
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+        while(c.moveToNext()) {
+
+            m.m_name=c.getString(c.getColumnIndex("m_name"));
+
+        }
+        c.close();
+        return m;
+    }
     public ArrayList<Credit> getCreditList(){
         ArrayList<Credit>list= new ArrayList<Credit>();
         String getCreditlistSql="SELECT * FROM `credit` ORDER BY cr_id DESC";
@@ -408,6 +365,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         c.close();
         return list;
+    }
+
+    public int getMemberId(String name){
+        Log.i("name", "is: "+name);
+        Member m = new Member();
+        String sql="SELECT * FROM `member` WHERE m_name='"+name+"'";
+        Log.i("Sql", "is: "+sql);
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+        while(c.moveToNext()) {
+
+            m.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
+
+        }
+        c.close();
+        return m.m_id;
     }
 
     public void updateExpense(int id, ContentValues cv){

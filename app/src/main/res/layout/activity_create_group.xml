@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:background="@mipmap/leaf"
+        android:orientation="vertical"></RelativeLayout>
+
+    <TextView
+        android:id="@+id/crg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Create group"
+        android:textColor="#000"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/tgname"
+        style="@style/reg_textviewstyle"
+        android:layout_below="@id/crg"
+        android:text="Group name" />
+
+    <EditText
+        android:id="@+id/egname"
+        style="@style/reg_edittextstyle"
+        android:layout_below="@id/tgname" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/egname">
+
+        <Button
+            android:id="@+id/create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_selector"
+            android:text="Create" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cancelbtn_selector"
+            android:text="Cancel" />
+
+
+    </LinearLayout>
+</RelativeLayout>

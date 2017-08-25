@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="1dp"
+    android:background="@mipmap/penpaper">
+
+    <TextView
+        android:id="@+id/tmname"
+        style="@style/reg_textviewstyle"
+        android:text="Member name"
+        android:paddingLeft="5dp"
+        android:layout_below="@id/title"/>
+    <EditText
+        android:id="@+id/emname"
+        style="@style/reg_edittextstyle"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/tmname" />
+
+
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter"
+        android:background="@drawable/btn_selector"
+        android:layout_below="@+id/emname"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:background="@drawable/cancelbtn_selector"
+        android:layout_alignBaseline="@+id/enter"
+        android:layout_alignBottom="@+id/enter"
+        android:layout_toRightOf="@+id/tmname"
+        android:layout_toEndOf="@+id/tmname" />
+
+
+</RelativeLayout>

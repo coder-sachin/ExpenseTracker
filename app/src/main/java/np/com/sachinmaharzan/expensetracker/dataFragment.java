@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import np.com.sachinmaharzan.expensetracker.fragments.GroupHomeFragment;
 import np.com.sachinmaharzan.expensetracker.fragments.IndividualHomeFragment;
 
 /**
@@ -54,7 +55,7 @@ public class dataFragment extends Fragment {
                 case 0:
                     return IndividualHomeFragment.newInstance(position);
                 case 1:
-                    //return GroupHomeFragment.newInstance(position);
+                    return GroupHomeFragment.newInstance(position);
                 case 3:
                     //return  null;
                 default:
