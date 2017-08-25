@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="1dp"
+    android:background="@mipmap/penpaper"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tdbsum"
+        style="@style/home_textviewstyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Debt to be paid:" />
+
+    <TextView
+        android:id="@+id/tvdbsum"
+        style="@style/home_textviewstyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/adddb"
+            style="@style/home_textviewstyle"
+            android:text=" +  Add new Debt amount" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignLeft="@id/adddb"
+            android:layout_alignRight="@id/adddb"
+            android:layout_below="@id/adddb"
+            android:background="#000" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

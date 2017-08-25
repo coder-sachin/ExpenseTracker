@@ -30,6 +30,10 @@
         <activity android:name=".CreditActivity" />
         <activity android:name=".AddCreditActivity" />
         <activity android:name=".CreditListActivity" />
+        <activity android:name=".DebtActivity" />
+        <activity android:name=".AddDebtActivity" />
+        <activity android:name=".DebtListActivity" />
+        <activity android:name=".PieChartActivity" />
     </application>
 
 </manifest>

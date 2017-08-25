@@ -150,22 +150,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public int getDebitSum(){
-        String dbTotalSql="SELECT * FROM `debit`";
-        Cursor c=getReadableDatabase().rawQuery(dbTotalSql,null);
-        int total=0;
-        while(c.moveToNext()){
-            Debit d=new Debit();
-            d.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
-            total=total+d.db_amt;
-        }
-        c.close();
-        return total;
-
-    }
-
-
-
     public int getGexpenseSum(int id){
         String gexpenseTotalSql="SELECT * FROM `gexpense` WHERE `g_id`="+id;
         Log.i("getexpsum", "first line and gid is: "+id+"  "+gexpenseTotalSql);
@@ -193,24 +177,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-
-    public ArrayList<Debit> getDebitList(){
-        ArrayList<Debit>list= new ArrayList<Debit>();
-        String getDebitlistSql="SELECT * FROM `debit` ORDER BY db_id DESC";
-        Cursor c=getReadableDatabase().rawQuery(getDebitlistSql,null);
-        while(c.moveToNext()){
-            Debit i=new Debit();
-            i.db_id=Integer.parseInt(c.getString(c.getColumnIndex("db_id")));
-            i.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
-            i.db_from=c.getString(c.getColumnIndex("db_from"));
-            i.db_desc=c.getString(c.getColumnIndex("db_desc"));
-            Log.i("value", "getDebitList: "+i.db_desc);
-            i.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
-            list.add(i);
-        }
-        c.close();
-        return list;
-    }
 
     public ArrayList<Group> getGroupList(){
         ArrayList<Group>list= new ArrayList<Group>();
@@ -266,19 +232,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public Debit getDebitInfo(int id){
-        Debit db = new Debit();
-        String sql="SELECT * FROM `debit` WHERE db_id="+id;
-        Cursor c=getReadableDatabase().rawQuery(sql,null);
-        while(c.moveToNext()) {
-            db.db_id=Integer.parseInt(c.getString(c.getColumnIndex("db_id")));
-            db.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
-            db.db_from=c.getString(c.getColumnIndex("db_from"));
-            db.db_desc=c.getString(c.getColumnIndex("db_desc"));
-        }
-        c.close();
-        return db;
-    }
 
     public Member getMemberInfo(int id){
         Member m = new Member();
@@ -307,6 +260,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return m.m_id;
     }*/
+    public Debit getDebitInfo(int id){
+        Debit db = new Debit();
+        String sql="SELECT * FROM `debit` WHERE db_id="+id;
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+        while(c.moveToNext()) {
+            db.db_id=Integer.parseInt(c.getString(c.getColumnIndex("db_id")));
+            db.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
+            db.db_from=c.getString(c.getColumnIndex("db_from"));
+            db.db_desc=c.getString(c.getColumnIndex("db_desc"));
+        }
+        c.close();
+        return db;
+    }
+
+
+    public int getDebitSum(){
+        String dbTotalSql="SELECT * FROM `debit`";
+        Cursor c=getReadableDatabase().rawQuery(dbTotalSql,null);
+        int total=0;
+        while(c.moveToNext()){
+            Debit d=new Debit();
+            d.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
+            total=total+d.db_amt;
+        }
+        c.close();
+        return total;
+
+    }
     public int getIncomeSum(){
         String incomeTotalSql="SELECT * FROM `income`";
         Cursor c=getReadableDatabase().rawQuery(incomeTotalSql,null);
@@ -346,6 +327,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             i.income_id=Integer.parseInt(c.getString(c.getColumnIndex("income_id")));
             i.income_desc=c.getString(c.getColumnIndex("income_desc"));
             i.income_amt=Integer.parseInt(c.getString(c.getColumnIndex("income_amt")));
+            list.add(i);
+        }
+        c.close();
+        return list;
+    }
+    public ArrayList<Debit> getDebitList(){
+        ArrayList<Debit>list= new ArrayList<Debit>();
+        String getDebitlistSql="SELECT * FROM `debit` ORDER BY db_id DESC";
+        Cursor c=getReadableDatabase().rawQuery(getDebitlistSql,null);
+        while(c.moveToNext()){
+            Debit i=new Debit();
+            i.db_id=Integer.parseInt(c.getString(c.getColumnIndex("db_id")));
+            i.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
+            i.db_from=c.getString(c.getColumnIndex("db_from"));
+            i.db_desc=c.getString(c.getColumnIndex("db_desc"));
+            Log.i("value", "getDebitList: "+i.db_desc);
+            i.db_amt=Integer.parseInt(c.getString(c.getColumnIndex("db_amt")));
             list.add(i);
         }
         c.close();

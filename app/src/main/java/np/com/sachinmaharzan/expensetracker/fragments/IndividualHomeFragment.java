@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import np.com.sachinmaharzan.expensetracker.BalanceActivity;
 import np.com.sachinmaharzan.expensetracker.CreditActivity;
+import np.com.sachinmaharzan.expensetracker.DebtActivity;
 import np.com.sachinmaharzan.expensetracker.ExpenseActivity;
 import np.com.sachinmaharzan.expensetracker.IncomeActivity;
+import np.com.sachinmaharzan.expensetracker.PieChartActivity;
 import np.com.sachinmaharzan.expensetracker.R;
 
 /**
@@ -121,7 +123,7 @@ public class IndividualHomeFragment extends Fragment {
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(),CreditActivity.class));
             }
-        });/*
+        });
         debtamt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,7 +136,7 @@ public class IndividualHomeFragment extends Fragment {
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), PieChartActivity.class));
             }
-        });*/
+        });
 
 
 

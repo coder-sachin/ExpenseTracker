@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="1dp"
+    android:background="@mipmap/penpaper">
+
+    <TextView
+        android:id="@+id/tdbfrom"
+        style="@style/reg_textviewstyle"
+        android:text="Debted from"
+        android:paddingLeft="5dp"
+        android:layout_below="@id/title"/>
+    <EditText
+        android:id="@+id/edbfrom"
+        style="@style/reg_edittextstyle"
+        android:layout_marginLeft="10dp"
+        android:hint="Enter name"
+        android:textColorHint="#a1a1a1"
+        android:layout_below="@id/tdbfrom" />
+
+    <TextView
+        android:id="@+id/tdbdesc"
+        style="@style/reg_textviewstyle"
+        android:text="Debt details"
+        android:paddingLeft="5dp"
+        android:layout_below="@id/edbfrom"/>
+    <EditText
+        android:id="@+id/edbdesc"
+        style="@style/reg_edittextstyle"
+        android:layout_marginLeft="10dp"
+        android:hint="Reason for being debt"
+        android:textColorHint="#a1a1a1"
+        android:layout_below="@id/tdbdesc" />
+    <TextView
+        android:id="@+id/tdbamt"
+        style="@style/reg_textviewstyle"
+        android:text="Debited amount"
+        android:paddingLeft="5dp"
+        android:layout_below="@id/edbdesc"/>
+    <EditText
+        android:id="@+id/edbamt"
+        style="@style/reg_edittextstyle"
+        android:inputType="number"
+        android:hint="Enter amount"
+        android:textColorHint="#a1a1a1"
+        android:layout_below="@id/tdbamt" />
+
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter"
+        android:background="@drawable/btn_selector"
+        android:layout_below="@id/edbamt"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:background="@drawable/cancelbtn_selector"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/enter"
+        android:layout_alignTop="@+id/enter" />
+
+
+</RelativeLayout>

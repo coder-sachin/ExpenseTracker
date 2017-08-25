@@ -48,7 +48,7 @@ public class IndividualHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(IndividualHomeActivity.this,CreditActivity.class));
             }
-        });/*
+        });
 
         debtamt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +56,7 @@ public class IndividualHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(IndividualHomeActivity.this,DebtActivity.class));
             }
         });
-        */
+
 
 
 
