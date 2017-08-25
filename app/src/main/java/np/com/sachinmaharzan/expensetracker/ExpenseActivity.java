@@ -1,8 +1,8 @@
 package np.com.sachinmaharzan.expensetracker;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,7 +37,7 @@ public class ExpenseActivity extends AppCompatActivity {
         });
 
         int total= populateData();
-        expensesum.setText("Rs."+Integer.toString(total));
+        expensesum.setText("Rs."+ Integer.toString(total));
     }
 
     public int populateData() {
@@ -49,7 +49,6 @@ public class ExpenseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         int total= populateData();
-        expensesum.setText("Rs."+Integer.toString(total));
-    }
+        expensesum.setText("Rs."+ Integer.toString(total));
     }
 }

@@ -109,9 +109,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void insertMember(ContentValues cv){
         getWritableDatabase().insert("member","",cv);
     }
-
-
-    /*
     public int getExpenseSum(){
         String expenseTotalSql="SELECT * FROM `expense`";
         Cursor c=getReadableDatabase().rawQuery(expenseTotalSql,null);
@@ -126,6 +123,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return total;
 
     }
+
+    public ArrayList<Expense> getExpenseList(){
+        ArrayList<Expense>list= new ArrayList<Expense>();
+        String getExpenseListSql="SELECT * FROM `expense`";
+        Cursor c=getReadableDatabase().rawQuery(getExpenseListSql,null);
+        while(c.moveToNext()){
+
+            Expense e=new Expense();
+            e.expense_id=Integer.parseInt(c.getString(c.getColumnIndex("expense_id")));
+            e.expense_detail=c.getString(c.getColumnIndex("expense_detail"));
+            e.expense_amt=Integer.parseInt(c.getString(c.getColumnIndex("expense_amt")));
+            list.add(e);
+        }
+        c.close();
+        return list;
+    }
+
+
+    /*
+
 
 
     public int getIncomeSum(){
@@ -198,21 +215,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public ArrayList<Expense> getExpenseList(){
-        ArrayList<Expense>list= new ArrayList<Expense>();
-        String getExpenseListSql="SELECT * FROM `expense`";
-        Cursor c=getReadableDatabase().rawQuery(getExpenseListSql,null);
-        while(c.moveToNext()){
 
-            Expense e=new Expense();
-            e.expense_id=Integer.parseInt(c.getString(c.getColumnIndex("expense_id")));
-            e.expense_detail=c.getString(c.getColumnIndex("expense_detail"));
-            e.expense_amt=Integer.parseInt(c.getString(c.getColumnIndex("expense_amt")));
-            list.add(e);
-        }
-        c.close();
-        return list;
-    }
 
     public ArrayList<Income> getIncomeList(){
         ArrayList<Income>list= new ArrayList<Income>();
@@ -315,19 +318,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public Expense getExpenseInfo(int id){
-        Expense e = new Expense();
-        String sql="SELECT * FROM `expense` WHERE expense_id="+id;
-        Cursor c=getReadableDatabase().rawQuery(sql,null);
-        while(c.moveToNext()) {
-            e.expense_id=Integer.parseInt(c.getString(c.getColumnIndex("expense_id")));
-            e.expense_amt=Integer.parseInt(c.getString(c.getColumnIndex("expense_amt")));
-            e.expense_detail=c.getString(c.getColumnIndex("expense_detail"));
-        }
-        c.close();
-        return  e;
 
-    }
 
     public Income getIncomeInfo(int id){
         Income e = new Income();
@@ -399,6 +390,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return m.m_id;
     }*/
+
+    public Expense getExpenseInfo(int id){
+        Expense e = new Expense();
+        String sql="SELECT * FROM `expense` WHERE expense_id="+id;
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+        while(c.moveToNext()) {
+            e.expense_id=Integer.parseInt(c.getString(c.getColumnIndex("expense_id")));
+            e.expense_amt=Integer.parseInt(c.getString(c.getColumnIndex("expense_amt")));
+            e.expense_detail=c.getString(c.getColumnIndex("expense_detail"));
+        }
+        c.close();
+        return  e;
+
+    }
 
 
 

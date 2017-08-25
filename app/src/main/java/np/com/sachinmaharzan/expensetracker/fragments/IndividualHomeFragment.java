@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import np.com.sachinmaharzan.expensetracker.ExpenseActivity;
 import np.com.sachinmaharzan.expensetracker.R;
 
 /**
@@ -90,7 +91,7 @@ public class IndividualHomeFragment extends Fragment {
         target.setTypeface(typeface);
 
 
-/*
+
         expense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +99,7 @@ public class IndividualHomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        /*
         income.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -35,7 +35,7 @@
 
 
 
-        <TextView
+         <TextView
             android:id="@+id/addexpense"
             style="@style/home_textviewstyle"
             android:text=" +  Add expense"/>
@@ -48,8 +48,8 @@
             android:layout_below="@+id/addexpense"
             android:background="#000"/>
 
-    </RelativeLayout>
+        </RelativeLayout>
 
 
 
-</LinearLayout>
+    </LinearLayout>
