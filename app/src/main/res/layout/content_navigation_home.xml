@@ -8,6 +8,13 @@
     tools:context="np.com.sachinmaharzan.expensetracker.NavigationHome"
     tools:showIn="@layout/app_bar_navigation_home">
 
+    <FrameLayout
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
 
 
 </android.support.constraint.ConstraintLayout>
