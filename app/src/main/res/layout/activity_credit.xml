@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="1dp"
+    android:background="@mipmap/penpaper">
+
+    <TextView
+        android:id="@+id/tcrsum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle"
+        android:text="Total Credited Amount:"/>
+
+    <TextView
+        android:id="@+id/tvcrsum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle" />
+
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+
+
+        <TextView
+            android:id="@+id/addcr"
+            style="@style/home_textviewstyle"
+            android:text=" +  Add Credit amount"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignLeft="@id/addcr"
+            android:layout_alignRight="@id/addcr"
+            android:layout_below="@+id/addcr"
+            android:background="#000"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

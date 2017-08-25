@@ -42,13 +42,13 @@ public class IndividualHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(IndividualHomeActivity.this,BalanceActivity.class));
             }
         });
-/*
+
         creditamt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(IndividualHomeActivity.this,CreditActivity.class));
             }
-        });
+        });/*
 
         debtamt.setOnClickListener(new View.OnClickListener() {
             @Override

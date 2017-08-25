@@ -27,6 +27,9 @@
         <activity android:name=".AddIncomeActivity" />
         <activity android:name=".IncomeListActivity" />
         <activity android:name=".BalanceActivity" />
+        <activity android:name=".CreditActivity" />
+        <activity android:name=".AddCreditActivity" />
+        <activity android:name=".CreditListActivity" />
     </application>
 
 </manifest>

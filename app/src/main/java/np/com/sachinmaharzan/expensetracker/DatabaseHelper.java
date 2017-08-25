@@ -147,21 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public int getCreditSum(){
-        String crTotalSql="SELECT * FROM `credit`";
-        Cursor c=getReadableDatabase().rawQuery(crTotalSql,null);
-        int total=0;
-        while(c.moveToNext()){
-            //Log.i("fist line inwhile", "getCreditSum: ");
-            Credit e=new Credit();
-            //Log.i("above erline", "cramt"+e.cr_amt);
-            e.cr_amt=Integer.parseInt(c.getString(c.getColumnIndex("cr_amt")));
-            total=total+e.cr_amt;
-        }
-        c.close();
-        return total;
 
-    }
 
 
     public int getDebitSum(){
@@ -207,25 +193,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public ArrayList<Credit> getCreditList(){
-        ArrayList<Credit>list= new ArrayList<Credit>();
-        String getCreditlistSql="SELECT * FROM `credit` ORDER BY cr_id DESC";
-        Cursor c=getReadableDatabase().rawQuery(getCreditlistSql,null);
-        while(c.moveToNext()){
 
-            Credit i=new Credit();
-            i.cr_id=Integer.parseInt(c.getString(c.getColumnIndex("cr_id")));
-            i.cr_amt=Integer.parseInt(c.getString(c.getColumnIndex("cr_amt")));
-            i.cr_to=c.getString(c.getColumnIndex("cr_to"));
-            i.cr_desc=c.getString(c.getColumnIndex("cr_desc"));
-
-            Log.i("value", "getCreditList: "+i.cr_desc);
-            i.cr_amt=Integer.parseInt(c.getString(c.getColumnIndex("cr_amt")));
-            list.add(i);
-        }
-        c.close();
-        return list;
-    }
     public ArrayList<Debit> getDebitList(){
         ArrayList<Debit>list= new ArrayList<Debit>();
         String getDebitlistSql="SELECT * FROM `debit` ORDER BY db_id DESC";
@@ -296,20 +264,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public Credit getCreditInfo(int id){
-        Credit cr = new Credit();
-        String sql="SELECT * FROM `credit` WHERE cr_id="+id;
-        Cursor c=getReadableDatabase().rawQuery(sql,null);
-        while(c.moveToNext()) {
-            cr.cr_id=Integer.parseInt(c.getString(c.getColumnIndex("cr_id")));
-            cr.cr_amt=Integer.parseInt(c.getString(c.getColumnIndex("cr_amt")));
-            cr.cr_to=c.getString(c.getColumnIndex("cr_to"));
-            cr.cr_desc=c.getString(c.getColumnIndex("cr_desc"));
-        }
-        c.close();
-        return cr;
 
-    }
 
     public Debit getDebitInfo(int id){
         Debit db = new Debit();
@@ -365,6 +320,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return total;
 
     }
+    public int getCreditSum(){
+        String crTotalSql="SELECT * FROM `credit`";
+        Cursor c=getReadableDatabase().rawQuery(crTotalSql,null);
+        int total=0;
+        while(c.moveToNext()){
+            //Log.i("fist line inwhile", "getCreditSum: ");
+            Credit e=new Credit();
+            //Log.i("above erline", "cramt"+e.cr_amt);
+            e.cr_amt=Integer.parseInt(c.getString(c.getColumnIndex("cr_amt")));
+            total=total+e.cr_amt;
+        }
+        c.close();
+        return total;
+
+    }
 
     public ArrayList<Income> getIncomeList(){
         ArrayList<Income>list= new ArrayList<Income>();
@@ -408,8 +378,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return e;
 
     }
+    public Credit getCreditInfo(int id){
+        Credit cr = new Credit();
+        String sql="SELECT * FROM `credit` WHERE cr_id="+id;
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+        while(c.moveToNext()) {
+            cr.cr_id=Integer.parseInt(c.getString(c.getColumnIndex("cr_id")));
+            cr.cr_amt=Integer.parseInt(c.getString(c.getColumnIndex("cr_amt")));
+            cr.cr_to=c.getString(c.getColumnIndex("cr_to"));
+            cr.cr_desc=c.getString(c.getColumnIndex("cr_desc"));
+        }
+        c.close();
+        return cr;
 
+    }
+    public ArrayList<Credit> getCreditList(){
+        ArrayList<Credit>list= new ArrayList<Credit>();
+        String getCreditlistSql="SELECT * FROM `credit` ORDER BY cr_id DESC";
+        Cursor c=getReadableDatabase().rawQuery(getCreditlistSql,null);
+        while(c.moveToNext()){
 
+            Credit i=new Credit();
+            i.cr_id=Integer.parseInt(c.getString(c.getColumnIndex("cr_id")));
+            i.cr_amt=Integer.parseInt(c.getString(c.getColumnIndex("cr_amt")));
+            i.cr_to=c.getString(c.getColumnIndex("cr_to"));
+            i.cr_desc=c.getString(c.getColumnIndex("cr_desc"));
+
+            Log.i("value", "getCreditList: "+i.cr_desc);
+            i.cr_amt=Integer.parseInt(c.getString(c.getColumnIndex("cr_amt")));
+            list.add(i);
+        }
+        c.close();
+        return list;
+    }
 
     public void updateExpense(int id, ContentValues cv){
         getWritableDatabase().update("expense",cv,"expense_id="+id,null);
