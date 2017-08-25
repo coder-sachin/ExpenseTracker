@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="1dp"
+    android:background="@mipmap/penpaper"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tbalance"
+        style="@style/home_textviewstyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estimated Balance:" />
+
+    <TextView
+        android:id="@+id/tvbalance"
+        style="@style/home_textviewstyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

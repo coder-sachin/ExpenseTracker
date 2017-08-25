@@ -26,6 +26,7 @@
         <activity android:name=".IncomeActivity" />
         <activity android:name=".AddIncomeActivity" />
         <activity android:name=".IncomeListActivity" />
+        <activity android:name=".BalanceActivity" />
     </application>
 
 </manifest>

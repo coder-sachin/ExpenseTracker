@@ -145,19 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public int getIncomeSum(){
-        String incomeTotalSql="SELECT * FROM `income`";
-        Cursor c=getReadableDatabase().rawQuery(incomeTotalSql,null);
-        int total=0;
-        while(c.moveToNext()){
-            Income e=new Income();
-            e.income_amt=Integer.parseInt(c.getString(c.getColumnIndex("income_amt")));
-            total=total+e.income_amt;
-        }
-        c.close();
-        return total;
 
-    }
 
     public int getCreditSum(){
         String crTotalSql="SELECT * FROM `credit`";
@@ -364,6 +352,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return m.m_id;
     }*/
+    public int getIncomeSum(){
+        String incomeTotalSql="SELECT * FROM `income`";
+        Cursor c=getReadableDatabase().rawQuery(incomeTotalSql,null);
+        int total=0;
+        while(c.moveToNext()){
+            Income e=new Income();
+            e.income_amt=Integer.parseInt(c.getString(c.getColumnIndex("income_amt")));
+            total=total+e.income_amt;
+        }
+        c.close();
+        return total;
+
+    }
 
     public ArrayList<Income> getIncomeList(){
         ArrayList<Income>list= new ArrayList<Income>();
