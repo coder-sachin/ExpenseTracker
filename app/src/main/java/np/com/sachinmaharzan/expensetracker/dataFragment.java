@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import np.com.sachinmaharzan.expensetracker.fragments.IndividualHomeFragment;
+
 /**
  * Created by lazyboy on 8/25/17.
  */
@@ -48,7 +50,18 @@ public class dataFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return new contentFragment();
+            switch(position){
+                case 0:
+                    return IndividualHomeFragment.newInstance(position);
+                case 1:
+                    //return GroupHomeFragment.newInstance(position);
+                case 3:
+                    //return  null;
+                default:
+                    return new contentFragment();
+
+            }
+
         }
 
         @Override

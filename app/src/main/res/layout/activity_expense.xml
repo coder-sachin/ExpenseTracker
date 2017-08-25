@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="1dp"
+    android:background="@mipmap/penpaper">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:id="@+id/container"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/expensesum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle"
+        android:text="Total Expenditure:"/>
+
+    <TextView
+        android:id="@+id/texpensesum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle" />
+
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+
+
+        <TextView
+            android:id="@+id/addexpense"
+            style="@style/home_textviewstyle"
+            android:text=" +  Add expense"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignLeft="@id/addexpense"
+            android:layout_alignRight="@id/addexpense"
+            android:layout_below="@+id/addexpense"
+            android:background="#000"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
