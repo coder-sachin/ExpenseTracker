@@ -36,6 +36,7 @@ public class GroupExpenseActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(GroupExpenseActivity.this,GroupExpenseListActivity.class);
                 intent.putExtra("g_id",gid);
+                Log.i("Sent gid is ",""+gid);
                 startActivity(intent);
             }
         });

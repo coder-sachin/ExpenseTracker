@@ -36,27 +36,29 @@ public class GroupExpenseListAdapter extends ArrayAdapter<Gexpense> {
     }
 
    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-       Log.i(TAG, "first line of adapter view: ");
+        Log.i(TAG, "first line of adapter view: ");
         View view = LayoutInflater.from(context).inflate(R.layout.item_layout, null);
         Button delete, edit;
         TextView expensedesc, expenseamt,grpid;
-       grpid= (TextView) view.findViewById(R.id.grpid);
-       expensedesc = (TextView) view.findViewById(R.id.expensedetail);
+        grpid= (TextView) view.findViewById(R.id.grpid);
+        expensedesc = (TextView) view.findViewById(R.id.expensedetail);
         expenseamt = (TextView) view.findViewById(R.id.expenseamt);
         edit = (Button) view.findViewById(R.id.edit);
         delete = (Button) view.findViewById(R.id.delete);
+
         final Gexpense expense = getItem(position);
         expensedesc.setText(expense.gexpense_desc);
        Log.i(TAG, "expense detail is: "+expense.gexpense_desc);
         expenseamt.setText("Rs " + expense.gexpense_amt);
         grpid.setText("grp id"+expense.g_id);
 
-       Log.i(TAG, "gidis: "+expense.g_id);
+        Log.i(TAG, "gidis: "+expense.g_id);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AddGroupExpenseActivity.class);
                 intent.putExtra("gexpense_id", expense.gexpense_id);
+                Log.i(TAG, "Sent gexpense id"+expense.gexpense_id);
                 context.startActivity(intent);
             }
         });
@@ -81,6 +83,7 @@ public class GroupExpenseListAdapter extends ArrayAdapter<Gexpense> {
                 databaseHelper=new DatabaseHelper(context);
                 databaseHelper.deleteGexpense(gexpense_id);
                 Toast.makeText(context,"Expense Deleted Successfully", Toast.LENGTH_SHORT).show();
+                ((GroupExpenseListActivity)context).finish();
             }
         });
         dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -91,6 +94,8 @@ public class GroupExpenseListAdapter extends ArrayAdapter<Gexpense> {
         });
         dialog.show();
     }
+
+
 
 
 

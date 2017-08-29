@@ -18,7 +18,7 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
     Spinner spinner;
     EditText expensedesc, expenseamt;
     DatabaseHelper databaseHelper;
-    int gid;
+    int gid,gexid,g;
     Button enter, cancel;
 
 
@@ -26,18 +26,30 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group_expense);
-
+        gexid=getIntent().getIntExtra("gexpense_id",0);
         gid=getIntent().getIntExtra("g_id",0);
-
+        Log.i("", "Receive gexpenseid"+gid);
         spinner= (Spinner) findViewById(R.id.spinnerr);
         expensedesc= (EditText) findViewById(eexpensein);
         expenseamt= (EditText) findViewById(R.id.eexpenseamt);
         enter= (Button) findViewById(R.id.enter);
         cancel= (Button) findViewById(R.id.cancel);
-
         databaseHelper=new DatabaseHelper(this);
 
-        spinner.setAdapter(new MemberSpinnerActivity(AddGroupExpenseActivity.this,databaseHelper.getMemberList(gid)));
+        if(gexid != 0){
+            Gexpense ge;
+            ge=databaseHelper.getGexpenseinfo(gexid);
+            g=ge.g_id;
+            Log.i("", "groupid for memberlist: "+g);
+            expensedesc.setText(ge.gexpense_desc);
+            expenseamt.setText(ge.gexpense_amt+"");
+            spinner.setAdapter(new MemberSpinnerActivity(AddGroupExpenseActivity.this,databaseHelper.getMemberList(g)));
+            enter.setText("Update");
+        }else{
+            spinner.setAdapter(new MemberSpinnerActivity(AddGroupExpenseActivity.this,databaseHelper.getMemberList(gid)));
+        }
+
+
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,14 +65,22 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
                 contentValues.put("m_id",memberidValue);
                 contentValues.put("gexpense_amt",expenseamtValue);
                 contentValues.put("gexpense_desc",expensedescValue);
-                contentValues.put("g_id",gid);
+
                 Log.i("belwo insert", ": ");
 
-                databaseHelper.insertGexpense(contentValues);
+                if(gexid !=0){
+                    contentValues.put("g_id",g);
+                    databaseHelper.updateGexpense(gexid,contentValues);
+                    Toast.makeText(AddGroupExpenseActivity.this, "Updated succesfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else{
+                    contentValues.put("g_id",gid);
+                    databaseHelper.insertGexpense(contentValues);
+                    Toast.makeText(AddGroupExpenseActivity.this, "Inserted succesfully", Toast.LENGTH_SHORT).show();
+                    finish();
 
+                }
 
-                Toast.makeText(AddGroupExpenseActivity.this, "Inserted succesfully", Toast.LENGTH_SHORT).show();
-                finish();
 
             }
         });

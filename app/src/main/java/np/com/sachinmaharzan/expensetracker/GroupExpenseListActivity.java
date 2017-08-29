@@ -18,15 +18,21 @@ public class GroupExpenseListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_expense_list);
         databaseHelper=new DatabaseHelper(this);
-
         gid=getIntent().getIntExtra("g_id",0);
-        Log.i(TAG, "listactivity gid is: "+gid);
+        Log.i("received gid is", ""+gid);
 
-        container= (ListView) findViewById(R.id.container);
+        container= findViewById(R.id.container);
 
         container.setAdapter(new GroupExpenseListAdapter(GroupExpenseListActivity.this,databaseHelper.getGexpenseList(gid)));
 
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        container.setAdapter(new GroupExpenseListAdapter(GroupExpenseListActivity.this,databaseHelper.getGexpenseList(gid)));
+    }
+
 
 }

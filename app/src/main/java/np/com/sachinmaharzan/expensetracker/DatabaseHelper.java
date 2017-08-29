@@ -283,10 +283,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Gexpense> getGexpenseList(int id){
         ArrayList<Gexpense>list= new ArrayList<Gexpense>();
         String getGexpenselistSql="SELECT * FROM `gexpense` WHERE `g_id`="+id;
+        Log.i("gid in query", ""+id);
         Cursor c=getReadableDatabase().rawQuery(getGexpenselistSql,null);
         while(c.moveToNext()){
             Gexpense ge=new Gexpense();
             ge.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
+            ge.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
+            ge.gexpense_id=Integer.parseInt(c.getString(c.getColumnIndex("gexpense_id")));
             ge.gexpense_amt=Integer.parseInt(c.getString(c.getColumnIndex("gexpense_amt")));
             ge.gexpense_desc=c.getString(c.getColumnIndex("gexpense_desc"));
             list.add(ge);
@@ -347,6 +350,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return m;
     }
+
+    public Gexpense getGexpenseinfo(int id){
+        Gexpense ge= new Gexpense();
+        String sql="SELECT * FROM `Gexpense` WHERE gexpense_id="+id;
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+        while(c.moveToNext()){
+            ge = new Gexpense();
+            ge.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
+            ge.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
+            ge.gexpense_id=Integer.parseInt(c.getString(c.getColumnIndex("gexpense_id")));
+            ge.gexpense_amt=Integer.parseInt(c.getString(c.getColumnIndex("gexpense_amt")));
+            ge.gexpense_desc=c.getString(c.getColumnIndex("gexpense_desc"));
+        }
+        c.close();
+        return ge;
+
+    }
+
     public ArrayList<Credit> getCreditList(){
         ArrayList<Credit>list= new ArrayList<Credit>();
         String getCreditlistSql="SELECT * FROM `credit` ORDER BY cr_id DESC";
@@ -396,6 +417,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateDebit(int id, ContentValues cv){
         getWritableDatabase().update("debit",cv,"db_id="+id,null);
+    }
+
+    public void updateGexpense(int id, ContentValues cv){
+        getWritableDatabase().update("Gexpense",cv,"gexpense_id="+id,null);
     }
 
     public void updateMember(int id, ContentValues cv){
