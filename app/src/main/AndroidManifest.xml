@@ -41,6 +41,8 @@
         <activity android:name=".GroupExpenseListActivity" />
         <activity android:name=".AddGroupExpenseActivity" />
         <activity android:name=".PieChartActivity" />
+        <activity android:name=".GroupBudgetActivity" />
+        <activity android:name=".GroupPieChartActivity"></activity>
     </application>
 
 </manifest>

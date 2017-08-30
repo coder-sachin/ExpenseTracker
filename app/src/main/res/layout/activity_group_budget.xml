@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#aaa">
+
+
+    <TextView
+        android:id="@+id/budget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="Total Budget is:"
+        style="@style/home_textviewstyle"/>
+    <TextView
+        android:id="@+id/budgetamt"
+        android:paddingLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle"
+        />
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <Button
+            android:id="@+id/addbudget"
+            android:layout_marginBottom="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:background="#9ea9a6"
+            android:text="+ Add budget amount"
+            android:textColor="#000"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

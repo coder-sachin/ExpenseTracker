@@ -52,6 +52,23 @@ public class GroupHomeActivity extends AppCompatActivity {
             }
         });
 
+        budget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(GroupHomeActivity.this,GroupBudgetActivity.class);
+                intent.putExtra("g_id",id);
+            }
+        });
+
+        overview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(GroupHomeActivity.this,GroupPieChartActivity.class);
+                intent.putExtra("g_id",id);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

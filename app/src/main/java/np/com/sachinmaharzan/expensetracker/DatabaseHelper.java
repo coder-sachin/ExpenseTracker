@@ -71,6 +71,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "\tFOREIGN KEY(`m_id`) REFERENCES member,\n" +
             "\tFOREIGN KEY(`g_id`) REFERENCES grup\n" +
             ");";
+    String createGbudgetTableSql="CREATE TABLE if not exists `gbudget` (\n" +
+            "\t`budget_id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+            "\t`m_id`\tINTEGER,\n" +
+            "\t`budget_amt`\tINTEGER,\n" +
+            "\tFOREIGN KEY(`m_id`) REFERENCES member\n" +
+            ");";
+
 
     public DatabaseHelper(Context context) {
         super(context, name, null, version);
@@ -82,6 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         getWritableDatabase().execSQL(createGroupTablesql);
         getWritableDatabase().execSQL(createMemberTableSql);
         getWritableDatabase().execSQL(createGexpenseTableSql);
+        getWritableDatabase().execSQL(createGbudgetTableSql);
 
 
     }
@@ -139,6 +147,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return list;
     }
+/*
+    public ArrayList<Gexpense> getGexpenseList(int id){
+        ArrayList<Gexpense>list= new ArrayList<Gexpense>();
+        String getExpenseListSql="SELECT * FROM `gexpense` WHERE g_id="+id;
+        Cursor c=getReadableDatabase().rawQuery(getExpenseListSql,null);
+        while(c.moveToNext()){
+
+            Gexpense ge=new Gexpense();
+            ge.gexpense_id=Integer.parseInt(c.getString(c.getColumnIndex("gexpense_id")));
+            ge.m_id=Integer.parseInt(c.getString(c.getColumnIndex("m_id")));
+            ge.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
+            ge.gexpense_desc=c.getString(c.getColumnIndex("gexpense_desc"));
+            ge.gexpense_amt=Integer.parseInt(c.getString(c.getColumnIndex("gexpense_amt")));
+            list.add(ge);
+        }
+        c.close();
+        return list;
+    }
+    */
 
 
 
@@ -216,6 +243,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.i("endfunc", "totalis : "+total);
         return total;
 
+
+    }
+
+    public int getGbudgetSum(int id) {
+
+        String gexpenseTotalSql="SELECT * FROM `gbudget` WHERE `g_id`="+id;
+
+        Cursor d=getReadableDatabase().rawQuery(gexpenseTotalSql,null);
+        int total=0;
+        while(d.moveToNext()){
+             Gbudget gb=new Gbudget();
+            gb.budget_amt=Integer.parseInt(d.getString(d.getColumnIndex("budget_amt")));
+            total=total+gb.budget_amt;
+        }
+        d.close();
+        return total;
 
     }
 
@@ -487,4 +530,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
+
 }
