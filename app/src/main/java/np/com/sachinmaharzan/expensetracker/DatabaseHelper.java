@@ -74,8 +74,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     String createGbudgetTableSql="CREATE TABLE if not exists `gbudget` (\n" +
             "\t`budget_id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "\t`m_id`\tINTEGER,\n" +
+            "\t`g_id`\tINTEGER,\n" +
             "\t`budget_amt`\tINTEGER,\n" +
-            "\tFOREIGN KEY(`m_id`) REFERENCES member\n" +
+            "\tFOREIGN KEY(`m_id`) REFERENCES member,\n" +
+            "\tFOREIGN KEY(`g_id`) REFERENCES member\n" +
             ");";
 
 

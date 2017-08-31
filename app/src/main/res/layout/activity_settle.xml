@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/expense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total expense:"
+        style="@style/home_textviewstyle"/>
+    <TextView
+        android:id="@+id/expenseVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignLeft="@id/expenseVal"
+        android:layout_alignRight="@id/expenseVal"
+        android:background="#000" />
+
+    <TextView
+        android:id="@+id/members"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No. of members:"
+        style="@style/home_textviewstyle"/>
+    <TextView
+        android:id="@+id/numMembers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
+    <TextView
+        android:id="@+id/settled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Divided amount:"
+        style="@style/home_textviewstyle"/>
+    <TextView
+        android:id="@+id/settledamt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
+    <TextView
+        android:id="@+id/excess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Excess amount:"
+        style="@style/home_textviewstyle"/>
+    <TextView
+        android:id="@+id/excessvalue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/home_textviewstyle"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
+    <TextView
+        android:id="@+id/transaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Required transaction"
+        style="@style/home_textviewstyle"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000" />
+
+
+
+</LinearLayout>

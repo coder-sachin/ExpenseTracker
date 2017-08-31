@@ -9,7 +9,7 @@ import android.widget.TextView;
 public class GroupHomeActivity extends AppCompatActivity {
 
 
-    TextView members, addmembers, expense, budget, overview;
+    TextView members, addmembers, expense, budget, overview, settle;
     int id;
 
     @Override
@@ -23,6 +23,7 @@ public class GroupHomeActivity extends AppCompatActivity {
         expense= (TextView) findViewById(R.id.gexpense);
         budget= (TextView) findViewById(R.id.budget);
         overview= (TextView) findViewById(R.id.overview);
+        settle= (TextView) findViewById(R.id.settle);
 
 
         addmembers.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,15 @@ public class GroupHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(GroupHomeActivity.this,GroupBudgetActivity.class);
                 intent.putExtra("g_id",id);
+            }
+        });
+        settle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(GroupHomeActivity.this,SettleActivity.class);
+                intent.putExtra("g_id",id);
+                startActivity(intent);
+
             }
         });
 
