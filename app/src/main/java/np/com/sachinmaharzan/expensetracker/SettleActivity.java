@@ -49,7 +49,7 @@ public class SettleActivity extends AppCompatActivity {
         transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SettleActivity.this,TransactionToSettle.class).putExtra("g_id",id));
+                startActivity(new Intent(SettleActivity.this,TransactionToSettle.class).putExtra("g_id",id).putExtra("divided_amt",dividedamt));
             }
         });
 

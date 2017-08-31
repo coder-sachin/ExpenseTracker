@@ -448,6 +448,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return m.m_id;
     }
 
+    public int moneyGiven(int mid){
+        int money=0;
+        Log.i("dbfunction", "memberid: "+mid);
+        String sql="SELECT * FROM `gbudget` WHERE `m_id`="+mid;
+        Log.i("sql", "is: "+sql);
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+
+        while(c.moveToNext()){
+            Log.i("firstline", "whileloopo: ");
+            Log.i("inside  while", "after cursor: "+Integer.parseInt(c.getString(c.getColumnIndex("budget_amt"))));
+            money=money+Integer.parseInt(c.getString(c.getColumnIndex("budget_amt")));
+            Log.i("inside while", "money: "+money);
+        }
+        c.close();
+        Log.i("b4 return", "moneyval: "+money);
+        return money;
+
+    }
+
     public void updateExpense(int id, ContentValues cv){
         getWritableDatabase().update("expense",cv,"expense_id="+id,null);
     }
