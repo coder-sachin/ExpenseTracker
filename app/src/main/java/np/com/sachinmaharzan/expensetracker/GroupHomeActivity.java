@@ -1,6 +1,7 @@
 package np.com.sachinmaharzan.expensetracker;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,6 +26,13 @@ public class GroupHomeActivity extends AppCompatActivity {
         overview= (TextView) findViewById(R.id.overview);
         settle= (TextView) findViewById(R.id.settle);
 
+        Typeface typeface=Typeface.DEFAULT.createFromAsset(this.getAssets(),"PTN57F.ttf");
+        members.setTypeface(typeface);
+        addmembers.setTypeface(typeface);
+        expense.setTypeface(typeface);
+        budget.setTypeface(typeface);
+        overview.setTypeface(typeface);
+        settle.setTypeface(typeface);
 
         addmembers.setOnClickListener(new View.OnClickListener() {
             @Override

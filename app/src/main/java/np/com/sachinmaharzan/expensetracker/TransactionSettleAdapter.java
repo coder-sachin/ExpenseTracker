@@ -1,6 +1,7 @@
 package np.com.sachinmaharzan.expensetracker;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -37,23 +38,29 @@ public class TransactionSettleAdapter extends ArrayAdapter<Member> {
         take=(TextView) view.findViewById(R.id.takeAmt);
         give=(TextView) view.findViewById(R.id.giveAmt);
 
+        Typeface typeface=Typeface.DEFAULT.createFromAsset(context.getAssets(),"PTN57F.ttf");
+
+        name.setTypeface(typeface);
+        take.setTypeface(typeface);
+        give.setTypeface(typeface);
+
         final Member member=getItem(position);
-        name.setText(""+member.m_name);
+        name.setText("For "+member.m_name);
 
 
         moneyGiven=databasehelper.moneyGiven(member.m_id);
 
         Log.i("b4 if", "moneygiven and damt: "+moneyGiven+" "+damt);
         if(moneyGiven < damt){
-            take.setText((damt-moneyGiven)+"");
-            give.setText("0");
+            take.setText("Take : Rs. "+(damt-moneyGiven));
+            give.setText("Give : Rs.0");
         }else if (moneyGiven> damt){
-            take.setText("0");
-            give.setText((moneyGiven-damt)+"");
+            take.setText("Take : Rs.0");
+            give.setText("Give :Rs."+(moneyGiven-damt));
 
         }else {
-            take.setText("0");
-            give.setText("0");
+            take.setText("Take :Rs.0");
+            give.setText("Give :Rs.0");
 
         }
 

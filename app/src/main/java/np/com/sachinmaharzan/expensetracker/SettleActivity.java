@@ -1,6 +1,7 @@
 package np.com.sachinmaharzan.expensetracker;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,14 @@ public class SettleActivity extends AppCompatActivity {
         settledamt= (TextView) findViewById(R.id.settledamt);
         excess= (TextView) findViewById(R.id.excessvalue);
         transaction= (TextView) findViewById(R.id.transaction);
+
+        Typeface typeface=Typeface.DEFAULT.createFromAsset(this.getAssets(),"PTN57F.ttf");
+
+        expenseVal.setTypeface(typeface);
+        numMembers.setTypeface(typeface);
+        settledamt.setTypeface(typeface);
+        excess.setTypeface(typeface);
+        transaction.setTypeface(typeface);
 
         expenseVal.setText(totalexpense+"");
         numMembers.setText(memNumbers+"");

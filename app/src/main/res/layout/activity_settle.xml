@@ -4,12 +4,15 @@
     android:layout_height="match_parent"
     android:background="#f4f4f4"
     android:orientation="vertical">
-    <TextView
+
+    <np.com.sachinmaharzan.expensetracker.CustomTextView
         android:id="@+id/expense"
+        style="@style/home_textviewstyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
         android:text="Total expense:"
-        style="@style/home_textviewstyle"/>
+        android:typeface="monospace" />
     <TextView
         android:id="@+id/expenseVal"
         android:layout_width="match_parent"
@@ -24,7 +27,7 @@
         android:layout_alignRight="@id/expenseVal"
         android:background="#000" />
 
-    <TextView
+    <np.com.sachinmaharzan.expensetracker.CustomTextView
         android:id="@+id/members"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#000" />
-    <TextView
+    <np.com.sachinmaharzan.expensetracker.CustomTextView
         android:id="@+id/settled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#000" />
-    <TextView
+    <np.com.sachinmaharzan.expensetracker.CustomTextView
         android:id="@+id/excess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
