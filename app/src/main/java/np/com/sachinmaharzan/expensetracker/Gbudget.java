@@ -6,5 +6,5 @@ package np.com.sachinmaharzan.expensetracker;
 
 public class Gbudget {
 
-    int budget_id, budget_amt, m_id;
+    int budget_id, budget_amt, m_id,g_id;
 }

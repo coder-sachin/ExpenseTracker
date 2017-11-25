@@ -9,6 +9,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by lazyboy on 8/25/17.
  */
@@ -114,6 +116,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void insertDebit(ContentValues cv){
 
         getWritableDatabase().insert("debit","",cv);
+    }
+
+    public void insertGbudget(ContentValues cv){
+
+        getWritableDatabase().insert("Gbudget","",cv);
     }
 
     public void insertMember(ContentValues cv){
@@ -256,10 +263,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int total=0;
         while(d.moveToNext()){
              Gbudget gb=new Gbudget();
+            Log.i(TAG, "budgetamt inside while: "+gb.budget_amt);
             gb.budget_amt=Integer.parseInt(d.getString(d.getColumnIndex("budget_amt")));
             total=total+gb.budget_amt;
         }
         d.close();
+        Log.i(TAG, "total in dbheloper: "+total);
         return total;
 
     }

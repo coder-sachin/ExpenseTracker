@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="1dp"
+    android:background="@mipmap/penpaper">
+
+    <TextView
+        android:id="@+id/tbudgetamt"
+        style="@style/reg_textviewstyle"
+        android:text="Budget amount"
+        android:paddingLeft="5dp"
+        android:layout_below="@id/title"/>
+    <EditText
+        android:id="@+id/ebudgetamt"
+        style="@style/reg_edittextstyle"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/tbudgetamt" />
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical"
+        android:layout_below="@id/ebudgetamt">
+
+        <TextView
+            android:id="@+id/givenby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Given By:"
+            style="@style/reg_textviewstyle"/>
+
+        <Spinner
+            android:id="@+id/spinnerr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:layout_below="@id/givenby"></Spinner>
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter"
+        android:background="@drawable/btn_selector"
+        android:layout_below="@+id/line"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/enter"
+        android:layout_alignBottom="@+id/enter"
+        android:layout_alignEnd="@+id/ebudgetamt"
+        android:layout_alignRight="@+id/ebudgetamt"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:background="@drawable/cancelbtn_selector"
+        android:text="Cancel" />
+
+
+</RelativeLayout>

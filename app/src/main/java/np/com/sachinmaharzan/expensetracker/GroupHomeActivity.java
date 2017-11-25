@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -66,6 +67,7 @@ public class GroupHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(GroupHomeActivity.this,GroupBudgetActivity.class);
                 intent.putExtra("g_id",id);
+                startActivity(intent);
             }
         });
         settle.setOnClickListener(new View.OnClickListener() {

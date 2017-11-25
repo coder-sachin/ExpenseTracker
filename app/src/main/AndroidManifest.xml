@@ -45,7 +45,8 @@
         <activity android:name=".GroupPieChartActivity" />
         <activity android:name=".SettleActivity" />
         <activity android:name=".TransactionToSettle" />
-        <activity android:name=".TransactionSettleAdapter"></activity>
+        <activity android:name=".TransactionSettleAdapter" />
+        <activity android:name=".AddGroupBudgetActivity"></activity>
     </application>
 
 </manifest>
