@@ -46,7 +46,8 @@
         <activity android:name=".SettleActivity" />
         <activity android:name=".TransactionToSettle" />
         <activity android:name=".TransactionSettleAdapter" />
-        <activity android:name=".AddGroupBudgetActivity"></activity>
+        <activity android:name=".AddGroupBudgetActivity" />
+        <activity android:name=".GroupBudgetListActivity"></activity>
     </application>
 
 </manifest>

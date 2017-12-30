@@ -34,6 +34,13 @@ public class GroupBudgetActivity extends AppCompatActivity {
             }
         });
 
+        budgetamt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GroupBudgetActivity.this,GroupBudgetListActivity.class).putExtra("g_id",id));
+            }
+        });
+
     }
 
     @Override

@@ -561,4 +561,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<Gbudget> getGbudetList(int gid) {
+        ArrayList<Gbudget> list=new ArrayList<>();
+        String sql="SELECT * FROM `Gbudget` WHERE g_id="+gid;
+        Cursor cursor=getReadableDatabase().rawQuery(sql,null);
+        while (cursor.moveToNext()){
+            Gbudget gbudget=new Gbudget();
+            gbudget.budget_id=Integer.parseInt(cursor.getString(cursor.getColumnIndex("budget_id")));
+            gbudget.budget_amt=Integer.parseInt(cursor.getString(cursor.getColumnIndex("budget_amt")));
+            gbudget.m_id=Integer.parseInt(cursor.getString(cursor.getColumnIndex("m_id")));
+            gbudget.g_id=Integer.parseInt(cursor.getString(cursor.getColumnIndex("g_id")));
+            list.add(gbudget);
+        }
+        cursor.close();
+        return list;
+    }
 }
