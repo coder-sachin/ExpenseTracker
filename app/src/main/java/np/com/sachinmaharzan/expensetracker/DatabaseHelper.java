@@ -474,14 +474,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         //get amount from budget given
-        while (c.moveToNext()){
-            budgetmoney=budgetmoney+Integer.parseInt(c.getString(c.getColumnIndex("budget_amt")));
+        Cursor cd=getReadableDatabase().rawQuery(budgetsql,null);
+        while (cd.moveToNext()){
+            budgetmoney=budgetmoney+Integer.parseInt(cd.getString(cd.getColumnIndex("budget_amt")));
+
 
         }
 
         money=expensemoney + budgetmoney;
         c.close();
-       // Log.i("b4 return", "moneyval: "+money);
+        Log.i("expensemoney",""+expensemoney);
+        Log.i("budgetmoney",""+budgetmoney);
+        Log.i("retunedmoney",""+money);
+        Log.i("b4 return", "moneyval: "+money);
         return money;
 
     }
