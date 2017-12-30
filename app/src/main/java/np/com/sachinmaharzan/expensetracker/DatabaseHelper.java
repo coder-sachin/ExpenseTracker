@@ -458,19 +458,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int moneyGiven(int mid){
-        int money=0;
+        int expensemoney=0;
+        int budgetmoney=0;
+        int money;
         Log.i("dbfunction", "memberid: "+mid);
-        String sql="SELECT * FROM `gexpense` WHERE `m_id`="+mid;
-        Log.i("sql", "is: "+sql);
-        Cursor c=getReadableDatabase().rawQuery(sql,null);
-
+        String expensesql="SELECT * FROM `gexpense` WHERE `m_id`="+mid;
+        String budgetsql= "SELECT * FROM `gbudget` WHERE `m_id`="+mid;
+        Log.i("sql", "is: "+expensesql);
+        Cursor c=getReadableDatabase().rawQuery(expensesql,null);
+        //get amount from expense
         while(c.moveToNext()){
             Log.i("firstline", "whileloopo: ");
-            money=money+Integer.parseInt(c.getString(c.getColumnIndex("gexpense_amt")));
-            Log.i("inside while", "money: "+money);
+            expensemoney=expensemoney+Integer.parseInt(c.getString(c.getColumnIndex("gexpense_amt")));
+            Log.i("inside while", "money: "+expensemoney);
         }
+
+        //get amount from budget given
+        while (c.moveToNext()){
+            budgetmoney=budgetmoney+Integer.parseInt(c.getString(c.getColumnIndex("budget_amt")));
+
+        }
+
+        money=expensemoney + budgetmoney;
         c.close();
-        Log.i("b4 return", "moneyval: "+money);
+       // Log.i("b4 return", "moneyval: "+money);
         return money;
 
     }
