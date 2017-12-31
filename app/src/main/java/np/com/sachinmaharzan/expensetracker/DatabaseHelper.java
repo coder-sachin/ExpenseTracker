@@ -81,7 +81,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "\tFOREIGN KEY(`m_id`) REFERENCES member,\n" +
             "\tFOREIGN KEY(`g_id`) REFERENCES member\n" +
             ");";
-
+    String createGbudgetExpenseTableSql="CREATE TABLE `gbexpense` (\n" +
+            "\t`gbexpense_id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+            "\t`g_id`\tINTEGER,\n" +
+            "\t`gbexpense_amt`\tINTEGER NOT NULL,\n" +
+            "\t`gbexpense_desc`\tTEXT NOT NULL,\n" +
+            "\tFOREIGN KEY(`g_id`) REFERENCES grup\n" +
+            ");";
 
     public DatabaseHelper(Context context) {
         super(context, name, null, version);
@@ -94,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         getWritableDatabase().execSQL(createMemberTableSql);
         getWritableDatabase().execSQL(createGexpenseTableSql);
         getWritableDatabase().execSQL(createGbudgetTableSql);
-
+        getWritableDatabase().execSQL(createGbudgetExpenseTableSql);
 
     }
 

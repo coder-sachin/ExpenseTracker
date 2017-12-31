@@ -83,6 +83,8 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
             }
         });
 
+
+
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
