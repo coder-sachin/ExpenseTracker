@@ -81,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "\tFOREIGN KEY(`m_id`) REFERENCES member,\n" +
             "\tFOREIGN KEY(`g_id`) REFERENCES member\n" +
             ");";
-    String createGbudgetExpenseTableSql="CREATE TABLE `gbexpense` (\n" +
+    String createGbudgetExpenseTableSql="CREATE TABLE if not exists `gbexpense` (\n" +
             "\t`gbexpense_id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "\t`g_id`\tINTEGER,\n" +
             "\t`gbexpense_amt`\tINTEGER NOT NULL,\n" +
@@ -357,6 +357,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return list;
     }
+//Get expense done from group budget
+    public ArrayList<Gbudgetexpense> getGbexpenseList(int id){
+        ArrayList<Gbudgetexpense>list= new ArrayList<Gbudgetexpense>();
+        String getGbexpenselistSql="SELECT * FROM `gbexpense` WHERE `g_id`="+id;
+        Log.i("gid in query", ""+id);
+        Cursor c=getReadableDatabase().rawQuery(getGbexpenselistSql,null);
+        while(c.moveToNext()){
+            Gbudgetexpense ge=new Gbudgetexpense();
+            ge.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
+            ge.gbexpense_id=Integer.parseInt(c.getString(c.getColumnIndex("gbexpense_id")));
+            ge.gbexpense_amt=Integer.parseInt(c.getString(c.getColumnIndex("gbexpense_amt")));
+            ge.gbexpense_desc=c.getString(c.getColumnIndex("gbexpense_desc"));
+            list.add(ge);
+        }
+        c.close();
+        return list;
+    }
 
     public Expense getExpenseInfo(int id){
         Expense e = new Expense();
@@ -517,6 +534,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         getWritableDatabase().update("Gexpense",cv,"gexpense_id="+id,null);
     }
 
+    public void updateGbudgetexpense(int id, ContentValues cv){
+        getWritableDatabase().update("gbudgetexpense",cv,"gbexpense_id="+id,null);
+    }
+
     public void updateMember(int id, ContentValues cv){
         Log.i("fist line", "updateMember: "+id);
         getWritableDatabase().update("member",cv,"m_id="+id,null);
@@ -566,6 +587,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void insertGexpense(ContentValues cv){
 
         getWritableDatabase().insert("gexpense","",cv);
+    }
+
+    public void insertGbudgetExpense(ContentValues cv){
+        getWritableDatabase().insert("gbexpense","",cv);
     }
 
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

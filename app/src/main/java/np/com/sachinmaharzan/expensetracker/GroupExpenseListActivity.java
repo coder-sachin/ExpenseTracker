@@ -10,7 +10,7 @@ import static android.content.ContentValues.TAG;
 public class GroupExpenseListActivity extends Activity {
 
     int gid;
-    ListView container;
+    ListView container1, container2;
     DatabaseHelper databaseHelper;
 
     @Override
@@ -21,9 +21,10 @@ public class GroupExpenseListActivity extends Activity {
         gid=getIntent().getIntExtra("g_id",0);
         Log.i("received gid is", ""+gid);
 
-        container= findViewById(R.id.container);
-
-        container.setAdapter(new GroupExpenseListAdapter(GroupExpenseListActivity.this,databaseHelper.getGexpenseList(gid)));
+        container1= (ListView)findViewById(R.id.container11);
+        container2= (ListView)findViewById(R.id.container22);
+        container1.setAdapter(new GroupExpenseListAdapter(GroupExpenseListActivity.this,databaseHelper.getGexpenseList(gid)));
+        container2.setAdapter(new GroupBudgetExpenseListAdapter(GroupExpenseListActivity.this,databaseHelper.getGbexpenseList(gid)));
 
 
     }
@@ -31,7 +32,8 @@ public class GroupExpenseListActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        container.setAdapter(new GroupExpenseListAdapter(GroupExpenseListActivity.this,databaseHelper.getGexpenseList(gid)));
+        container1.setAdapter(new GroupExpenseListAdapter(GroupExpenseListActivity.this,databaseHelper.getGexpenseList(gid)));
+        container2.setAdapter(new GroupBudgetExpenseListAdapter(GroupExpenseListActivity.this,databaseHelper.getGbexpenseList(gid)));
     }
 
 

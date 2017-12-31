@@ -5,6 +5,6 @@ package np.com.sachinmaharzan.expensetracker;
  */
 
 public class Gbudgetexpense {
-    int gbe_id, g_id, gbe_amt;
-    String gbe_desc;
+    int gbexpense_id, g_id, gbexpense_amt;
+    String gbexpense_desc;
 }

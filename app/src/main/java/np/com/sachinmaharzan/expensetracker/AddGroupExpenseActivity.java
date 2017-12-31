@@ -25,6 +25,7 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
     Button enter, cancel;
     RadioGroup rg;
     RadioButton grup, mem;
+    Boolean grupbudget=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
         grup.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                grupbudget=true;
                 Toast.makeText(AddGroupExpenseActivity.this,"Budget amount checked",Toast.LENGTH_LONG).show();
             }
         });
@@ -88,35 +90,68 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                grupbudget =paidFromBudget();
+                if(grupbudget){
+                    String expensedescValue=expensedesc.getText().toString();
+                    int expenseamtValue= Integer.parseInt(expenseamt.getText().toString());
+                    ContentValues contentValues=new ContentValues();
+                    contentValues.put("gbexpense_amt",expenseamtValue);
+                    contentValues.put("gbexpense_desc",expensedescValue);
 
-                String expensedescValue=expensedesc.getText().toString();
-                int expenseamtValue= Integer.parseInt(expenseamt.getText().toString());
-                Member memer= (Member) spinner.getSelectedItem();
-                Log.i("name", "is: "+spinner.getSelectedItem()+"to sting is"+name);
-                int memberidValue=databaseHelper.getMemberId(memer.m_name);
-                Log.i("Memberid", "is: "+memberidValue);
-                ContentValues contentValues=new ContentValues();
-                contentValues.put("m_id",memberidValue);
-                contentValues.put("gexpense_amt",expenseamtValue);
-                contentValues.put("gexpense_desc",expensedescValue);
 
-                Log.i("belwo insert", ": ");
+                    if(gexid !=0){
+                        contentValues.put("g_id",g);
+                        databaseHelper.updateGbudgetexpense(gexid,contentValues);
+                        Toast.makeText(AddGroupExpenseActivity.this, "Updated succesfully", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        contentValues.put("g_id",gid);
+                        databaseHelper.insertGbudgetExpense(contentValues);
+                        Toast.makeText(AddGroupExpenseActivity.this, "Inserted succesfully to Grupbudgetexpense", Toast.LENGTH_SHORT).show();
+                        finish();
 
-                if(gexid !=0){
-                    contentValues.put("g_id",g);
-                    databaseHelper.updateGexpense(gexid,contentValues);
-                    Toast.makeText(AddGroupExpenseActivity.this, "Updated succesfully", Toast.LENGTH_SHORT).show();
-                    finish();
-                }else{
-                    contentValues.put("g_id",gid);
-                    databaseHelper.insertGexpense(contentValues);
-                    Toast.makeText(AddGroupExpenseActivity.this, "Inserted succesfully", Toast.LENGTH_SHORT).show();
-                    finish();
+                    }
+
+                }
+                else{
+
+                    String expensedescValue=expensedesc.getText().toString();
+                    int expenseamtValue= Integer.parseInt(expenseamt.getText().toString());
+                    Member memer= (Member) spinner.getSelectedItem();
+                    Log.i("name", "is: "+spinner.getSelectedItem()+"to sting is"+name);
+                    int memberidValue=databaseHelper.getMemberId(memer.m_name);
+                    Log.i("Memberid", "is: "+memberidValue);
+                    ContentValues contentValues=new ContentValues();
+                    contentValues.put("m_id",memberidValue);
+                    contentValues.put("gexpense_amt",expenseamtValue);
+                    contentValues.put("gexpense_desc",expensedescValue);
+
+                    Log.i("belwo insert", ": ");
+
+                    if(gexid !=0){
+                        contentValues.put("g_id",g);
+                        databaseHelper.updateGexpense(gexid,contentValues);
+                        Toast.makeText(AddGroupExpenseActivity.this, "Updated succesfully", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        contentValues.put("g_id",gid);
+                        databaseHelper.insertGexpense(contentValues);
+                        Toast.makeText(AddGroupExpenseActivity.this, "Inserted succesfully", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }
 
                 }
 
 
+
             }
+
+            private Boolean paidFromBudget() {
+                return grupbudget;
+            }
+
+
         });
 
         cancel.setOnClickListener(new View.OnClickListener() {
