@@ -255,6 +255,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             total=total+e.gexpense_amt;
         }
         d.close();
+
+
+        //Adding expense from budget amount
+        String gbexpenseTotalSql="SELECT * FROM `gbexpense` WHERE `g_id`="+id;
+        Cursor e= getReadableDatabase().rawQuery(gbexpenseTotalSql,null);
+        while(e.moveToNext()){
+            Gbudgetexpense gb= new Gbudgetexpense();
+            gb.gbexpense_amt= Integer.parseInt(e.getString(e.getColumnIndex("gbexpense_amt")));
+            total=total + gb.gbexpense_amt;
+        }
+        e.close();
+
+
         Log.i("endfunc", "totalis : "+total);
         return total;
 
@@ -278,6 +291,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return total;
 
     }
+
+    public int getRemBudget(int id){
+        int remBudget;
+        remBudget=getGbudgetSum(id)-getGbudgetExpense(id);
+        return remBudget;
+    }
+
+    private int getGbudgetExpense(int id) {
+        int gbudgetexpense=0;
+        String gbexpenseTotalSql="SELECT * FROM `gbexpense` WHERE `g_id`="+id;
+        Cursor e= getReadableDatabase().rawQuery(gbexpenseTotalSql,null);
+        while(e.moveToNext()){
+            Gbudgetexpense gb= new Gbudgetexpense();
+            gb.gbexpense_amt= Integer.parseInt(e.getString(e.getColumnIndex("gbexpense_amt")));
+            gbudgetexpense=gbudgetexpense + gb.gbexpense_amt;
+        }
+        e.close();
+        return gbudgetexpense;
+    }
+
 
     public ArrayList<Income> getIncomeList(){
         ArrayList<Income>list= new ArrayList<Income>();
@@ -623,4 +656,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return list;
     }
+
+
 }

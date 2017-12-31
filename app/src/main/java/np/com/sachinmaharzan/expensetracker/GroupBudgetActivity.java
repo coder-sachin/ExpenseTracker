@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class GroupBudgetActivity extends AppCompatActivity {
 
-    TextView budgetamt;
+    TextView budgetamt,budgetrem;
     Button addbudget;
     DatabaseHelper databaseHelper;
     int id;
@@ -23,8 +23,12 @@ public class GroupBudgetActivity extends AppCompatActivity {
         id=getIntent().getIntExtra("g_id",0);
         budgetamt= (TextView) findViewById(R.id.budgetamt);
         addbudget= (Button) findViewById(R.id.addbudget);
+        budgetrem= (TextView) findViewById(R.id.budgetrem);
+
         Log.i("budgetsum", "abovesetext: "+databaseHelper.getGbudgetSum(id));
         budgetamt.setText("Rs."+databaseHelper.getGbudgetSum(id));
+
+        budgetrem.setText("Rs."+databaseHelper.getRemBudget(id));
 
         addbudget.setOnClickListener(new View.OnClickListener() {
             @Override

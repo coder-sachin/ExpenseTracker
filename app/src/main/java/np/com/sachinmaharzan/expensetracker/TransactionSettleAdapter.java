@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class TransactionSettleAdapter extends ArrayAdapter<Member> {
+public class TransactionSettleAdapter extends ArrayAdapter<Member>  {
 
      Context context;
      DatabaseHelper databasehelper;
