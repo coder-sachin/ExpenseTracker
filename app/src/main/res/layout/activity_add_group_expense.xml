@@ -26,15 +26,33 @@
             android:id="@+id/expenseby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Expense By:"
+            android:text="Paid from:"
             style="@style/reg_textviewstyle"/>
-
-        <Spinner
-            android:id="@+id/spinnerr"
+        <RadioGroup
+            android:id="@+id/radio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:layout_below="@id/eexpensein"></Spinner>
+            android:layout_height="match_parent">
+            <RadioButton
+                android:id="@+id/radiogrup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/reg_textviewstyle"
+                android:text="Group Budget"/>
+            <RadioButton
+                android:id="@+id/radiomem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/reg_textviewstyle"
+                android:text="Members"/>
+            <Spinner
+                android:id="@+id/spinnerr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:layout_below="@id/eexpensein"></Spinner>
+        </RadioGroup>
+
+
 
 
     </LinearLayout>

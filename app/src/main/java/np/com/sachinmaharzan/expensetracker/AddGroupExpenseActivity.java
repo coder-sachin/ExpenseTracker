@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,7 +23,8 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     int gid,gexid,g;
     Button enter, cancel;
-
+    RadioGroup rg;
+    RadioButton grup, mem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,14 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
         expenseamt= (EditText) findViewById(R.id.eexpenseamt);
         enter= (Button) findViewById(R.id.enter);
         cancel= (Button) findViewById(R.id.cancel);
+        rg= (RadioGroup) findViewById(R.id.radio);
+        grup= (RadioButton) findViewById(R.id.radiogrup);
+        mem= (RadioButton) findViewById(R.id.radiomem);
         databaseHelper=new DatabaseHelper(this);
+
+        //Deactive spinner at first
+        spinner.setVisibility(View.GONE);
+        spinner.setClickable(false);
 
         if(gexid != 0){
             Gexpense ge;
@@ -49,7 +60,28 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
             spinner.setAdapter(new MemberSpinnerActivity(AddGroupExpenseActivity.this,databaseHelper.getMemberList(gid)));
         }
 
+        mem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    spinner.setVisibility(View.VISIBLE);
+                    spinner.setClickable(true);
+                    Log.d("if true", "onCheckedChanged: ");
+                }
+                else{
+                    spinner.setVisibility(View.GONE);
+                    spinner.setClickable(false);
+                    Log.d("else","oncheckedchanged");
+                }
+            }
+        });
 
+        grup.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Toast.makeText(AddGroupExpenseActivity.this,"Budget amount checked",Toast.LENGTH_LONG).show();
+            }
+        });
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
