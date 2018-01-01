@@ -21,7 +21,7 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
     Spinner spinner;
     EditText expensedesc, expenseamt;
     DatabaseHelper databaseHelper;
-    int gid,gexid,g;
+    int gid,gexid,g,gbexid;
     Button enter, cancel;
     RadioGroup rg;
     RadioButton grup, mem;
@@ -32,8 +32,10 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group_expense);
         gexid=getIntent().getIntExtra("gexpense_id",0);
+        gbexid=getIntent().getIntExtra("gbexpense_id",0);
         gid=getIntent().getIntExtra("g_id",0);
-        Log.i("", "Receive gexpenseid"+gid);
+        Log.i("", "Receive gexid"+gexid);
+        Log.i("", "Receive gbexid"+gbexid);
         spinner= (Spinner) findViewById(R.id.spinnerr);
         expensedesc= (EditText) findViewById(eexpensein);
         expenseamt= (EditText) findViewById(R.id.eexpenseamt);
@@ -47,6 +49,17 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
         //Deactive spinner at first
         spinner.setVisibility(View.GONE);
         spinner.setClickable(false);
+
+        if(gbexid !=0){
+            Gbudgetexpense gb=new Gbudgetexpense();
+            gb=databaseHelper.getGbudgetExpenseInfo(gbexid);
+            g=gb.g_id;
+            expensedesc.setText(gb.gbexpense_desc);
+            expenseamt.setText(gb.gbexpense_amt+"");
+            enter.setText("Update");
+
+        }
+
 
         if(gexid != 0){
             Gexpense ge;
@@ -91,19 +104,31 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 grupbudget =paidFromBudget();
+                String expensedescValue=expensedesc.getText().toString();
+                int expenseamtValue= Integer.parseInt(expenseamt.getText().toString());
                 if(grupbudget){
-                    String expensedescValue=expensedesc.getText().toString();
-                    int expenseamtValue= Integer.parseInt(expenseamt.getText().toString());
                     ContentValues contentValues=new ContentValues();
                     contentValues.put("gbexpense_amt",expenseamtValue);
                     contentValues.put("gbexpense_desc",expensedescValue);
 
+                    if(gbexid!=0){
+                        contentValues.put("g_id",g);
+                        databaseHelper.updateGbudgetexpense(gbexid,contentValues);
+                        Toast.makeText(AddGroupExpenseActivity.this, "Updated succesfully", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else{
+                        contentValues.put("g_id",g);
+                        databaseHelper.insertGbudgetExpense(contentValues);
+                        Toast.makeText(AddGroupExpenseActivity.this, "Inserted succesfully to Grupbudgetexpense", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
 
+/*
                     if(gexid !=0){
                         contentValues.put("g_id",g);
                         databaseHelper.updateGbudgetexpense(gexid,contentValues);
-                        Toast.makeText(AddGroupExpenseActivity.this, "Updated succesfully", Toast.LENGTH_SHORT).show();
-                        finish();
+
                     }else{
                         contentValues.put("g_id",gid);
                         databaseHelper.insertGbudgetExpense(contentValues);
@@ -111,12 +136,10 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
                         finish();
 
                     }
+                    */
 
                 }
                 else{
-
-                    String expensedescValue=expensedesc.getText().toString();
-                    int expenseamtValue= Integer.parseInt(expenseamt.getText().toString());
                     Member memer= (Member) spinner.getSelectedItem();
                     Log.i("name", "is: "+spinner.getSelectedItem()+"to sting is"+name);
                     int memberidValue=databaseHelper.getMemberId(memer.m_name);
@@ -146,6 +169,8 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
 
 
             }
+
+
 
             private Boolean paidFromBudget() {
                 return grupbudget;

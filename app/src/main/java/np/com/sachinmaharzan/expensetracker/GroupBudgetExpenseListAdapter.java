@@ -51,22 +51,17 @@ public class GroupBudgetExpenseListAdapter extends ArrayAdapter<Gbudgetexpense> 
         grpid.setText("grp id"+expense.g_id);
 
         Log.i(TAG, "gidis: "+expense.g_id);
-        /*
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AddGroupExpenseActivity.class);
-                intent.putExtra("gexpense_id", expense.gexpense_id);
-                Log.i(TAG, "Sent gexpense id"+expense.gexpense_id);
+                intent.putExtra("gbexpense_id", expense.gbexpense_id);
+                Log.i(TAG, "Sent gexpense id"+expense.gbexpense_id);
                 context.startActivity(intent);
             }
         });
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAlertDialog(expense.gexpense_id);
-            }
-        });*/
+
         return view;
     }
 }

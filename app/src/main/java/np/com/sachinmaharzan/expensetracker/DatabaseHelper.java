@@ -478,6 +478,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public Gbudgetexpense getGbudgetExpenseInfo(int id){
+        Gbudgetexpense gbe=new Gbudgetexpense();
+        String sql="SELECT * FROM `gbexpense` WHERE gbexpense_id="+id;
+        Cursor c=getReadableDatabase().rawQuery(sql,null);
+        while(c.moveToNext()){
+            gbe.gbexpense_id=Integer.parseInt(c.getString(c.getColumnIndex("gbexpense_id")));
+            gbe.g_id=Integer.parseInt(c.getString(c.getColumnIndex("g_id")));
+            gbe.gbexpense_amt=Integer.parseInt(c.getString(c.getColumnIndex("gbexpense_amt")));
+            gbe.gbexpense_desc=c.getString(c.getColumnIndex("gbexpense_desc"));
+        }
+        c.close();
+        return gbe;
+    }
+
     public ArrayList<Credit> getCreditList(){
         ArrayList<Credit>list= new ArrayList<Credit>();
         String getCreditlistSql="SELECT * FROM `credit` ORDER BY cr_id DESC";
@@ -568,7 +582,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateGbudgetexpense(int id, ContentValues cv){
-        getWritableDatabase().update("gbudgetexpense",cv,"gbexpense_id="+id,null);
+        getWritableDatabase().update("gbexpense",cv,"gbexpense_id="+id,null);
     }
 
     public void updateMember(int id, ContentValues cv){
