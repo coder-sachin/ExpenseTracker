@@ -96,6 +96,7 @@ public class PieChartActivity extends AppCompatActivity {
 
             yEntrys.add(new PieEntry(yData[i],xData[i]));
         }
+
         /*
 
         for(int i=0;i<xData.length;i++){

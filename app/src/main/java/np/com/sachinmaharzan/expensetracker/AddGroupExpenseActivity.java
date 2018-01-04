@@ -118,7 +118,7 @@ public class AddGroupExpenseActivity extends AppCompatActivity {
                         finish();
                     }
                     else{
-                        contentValues.put("g_id",g);
+                        contentValues.put("g_id",gid);
                         databaseHelper.insertGbudgetExpense(contentValues);
                         Toast.makeText(AddGroupExpenseActivity.this, "Inserted succesfully to Grupbudgetexpense", Toast.LENGTH_SHORT).show();
                         finish();
